@@ -1,19 +1,19 @@
 <template>
   <div class="col-md-4 mb-3">
-    <div class="card p-3" style="width: 30rem; height: 36rem;">
-      <img :src="post.imgUrl" class="card-img-top image-fluid" alt="..." style="height: 400px;">
-      <div class="card-body" style="">
+    <div class="card p-3" style="height: 450px;">
+      <img :src="post.imgUrl" class="card-img-top" alt="..." style="height: 300px; width: 400px;">
+      <div class="header text-end">
+        <router-link :to="{name: 'Profile', params: {id: post.creatorId}}" class="btn btn">
+          <img :src="post.creator.picture" style="height: 40px; width: 40px;">
+        </router-link>
+      </div>
+      <div class="card-body">
         <h4 class="card-text">
           {{ post.body }}
         </h4>
         <h6>
           {{ post.creator.name }}
         </h6>
-      </div>
-      <div class="card d-flex">
-        <router-link :to="{name: 'Profile', params: {id: post.creatorId}}" class="btn btn-primary">
-          Profile Page
-        </router-link>
       </div>
     </div>
   </div>

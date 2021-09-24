@@ -6,7 +6,7 @@
       </h1>
     </div>
     <div class="row" v-else>
-      <h3>No Posts...</h3>
+      <h3>Loading............</h3>
     </div>
   </div>
 </template>

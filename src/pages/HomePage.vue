@@ -1,5 +1,5 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+  <div class="container-fluid align-items-center justify-content-center">
     <div class="row">
       <PostCard v-for="p in posts" :key="p.id" :post="p" />
     </div>
