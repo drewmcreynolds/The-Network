@@ -1,7 +1,9 @@
 <template>
   <div class="container-fluid">
     <div class="row" v-if="posts.length > 0">
-      <PostsCard v-for="p in posts" :key="p.id" :post="p" />
+      <h1>
+        <PostCard v-for="p in posts" :key="p.id" :post="p" />
+      </h1>
     </div>
     <div class="row" v-else>
       <h3>No Posts...</h3>

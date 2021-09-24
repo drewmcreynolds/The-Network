@@ -7,9 +7,5 @@ class ProfilesService {
     logger.log('profile res', res)
     AppState.profile = res.data
   }
-
-   async getPostsById() {
-     const r
-   }
 }
 export const profilesService = new ProfilesService()
