@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img :src="ad.tall" class="elevation-4 rounded">
+    <img :src="ad.tall" class="elevation-4 rounded m-2">
   </div>
 </template>
 

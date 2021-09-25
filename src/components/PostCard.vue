@@ -1,5 +1,5 @@
 <template>
-  <div class="card p-3 m-3" style="width: 750px;">
+  <div class="card p-3 m-3">
     <img :src="post.imgUrl" class="card-img-top image-fluid rounded-top" alt="..." style="height: 25vh; width:35vh">
     <div class="card-body">
       <h4 class="card-text">
