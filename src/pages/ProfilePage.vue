@@ -1,9 +1,11 @@
 <template>
   <div class="container-fluid">
     <div class="row" v-if="posts.length > 0">
-      <h1>
-        <PostCard v-for="p in posts" :key="p.id" :post="p" />
-      </h1>
+      <div class="col-6">
+        <h1>
+          <PostCard v-for="p in posts" :key="p.id" :post="p" />
+        </h1>
+      </div>
     </div>
     <div class="row" v-else>
       <h3>Loading............</h3>

@@ -12,10 +12,23 @@ class PostsService {
     AppState.posts = res.data.posts.map(p => new Post(p))
   }
 
+  async searchByPosts(query) {
+    const res = await api.get(`api/posts/?query=${query}`)
+    logger.log('search by posts', res)
+    AppState.posts = res.data.posts.map(p => new Post(p))
+  }
+
   async createPost(newPost) {
     const res = await api.post('api/posts', newPost)
     AppState.posts.unshift(new Post(res.data))
     logger.log('create res', res)
+  }
+
+  async likePost(id) {
+    const res = await api.post(`api/posts/${id}/like`)
+    AppState.likes.filter(f => f.like)
+    await this.getPosts()
+    logger.log('like the post', res)
   }
 
   async deletePost(postId) {

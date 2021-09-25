@@ -3,12 +3,16 @@
     <Navbar />
   </header>
   <main>
-    <router-view />
+    <div class="row">
+      <div class="col-2">
+        <Sidebar />
+      </div>
+    </div>
+    <div class="col-md-10">
+      <router-view />
+    </div>
   </main>
   <footer>
-    <div class="bg-dark text-light text-center p-4">
-      Made with 💖 by CodeWorks
-    </div>
   </footer>
   <Modal>
     <template #modal-title>
@@ -34,5 +38,9 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
+.sidebar{
+  position: fixed;
+  height: 100vh;
+}
 
 </style>
