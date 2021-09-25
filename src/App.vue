@@ -1,14 +1,16 @@
 <template>
   <header>
-    <Navbar />
+    <div class="row">
+      <Navbar />
+    </div>
   </header>
   <main>
     <div class="row">
-      <div class="col-2">
+      <div class="col-md-3">
         <Sidebar />
       </div>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-9">
       <router-view />
     </div>
   </main>

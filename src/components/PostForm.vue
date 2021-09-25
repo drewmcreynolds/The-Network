@@ -21,7 +21,7 @@
       >
     </div>
     <div class="form-group">
-      <button type="submit" class="btn btn-success mt-2">
+      <button type="submit" class="btn btn-success mt-3">
         Create Post
       </button>
     </div>
@@ -43,7 +43,7 @@ export default {
         try {
           await postsService.createPost(editable.value)
           editable.value = {}
-          Pop.toast('You made it')
+          Pop.toast('You made it', 'success')
 
           const modal = Modal.getInstance(document.getElementById('post-form'))
           modal.hide()
