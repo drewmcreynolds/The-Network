@@ -1,22 +1,28 @@
 <template>
-  <div class="col-md-3">
-    <img :src="ad.tall" class="elevation-4 rounded m-2">
+  <div class="container">
+    <div class="row">
+      <div class="col d-flex flex-wrap">
+        <div class="card">
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState.js'
+
 export default {
   props: {
-    ad: {
+    profile: {
       type: Object,
       required: true
     }
   },
-  setup(props) {
+  setup() {
     return {
-      ads: computed(() => AppState.ads)
+      account: computed(() => AppState.account)
     }
   }
 }

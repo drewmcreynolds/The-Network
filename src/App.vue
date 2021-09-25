@@ -1,17 +1,23 @@
 <template>
   <header>
-    <div class="row">
+    <div>
       <Navbar />
     </div>
   </header>
   <main>
-    <div class="row">
+    <div class="row d-flex">
       <div class="col-md-3">
         <Sidebar />
       </div>
     </div>
-    <div class="col-md-9">
-      <router-view />
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-9">
+          <router-view />
+        </div>
+      </div>
     </div>
   </main>
   <footer>
