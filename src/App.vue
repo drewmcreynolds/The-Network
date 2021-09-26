@@ -2,30 +2,16 @@
   <header>
     <Navbar />
   </header>
-  <main class="container-fluid">
+  <main class="container-fluid bggrad">
     <div class="row">
       <div class="col-md-2">
         <Sidebar />
       </div>
-    </div>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-3">
-        </div>
-        <div class="col-md-9 viewport">
-          <router-view />
-        </div>
+      <div class="col-md-8">
+        <router-view />
       </div>
     </div>
   </main>
-  <Modal>
-    <template #modal-title>
-      <h4>Post Form</h4>
-    </template>
-    <template #modal-body>
-      <PostForm />
-    </template>
-  </Modal>
 </template>
 
 <script>
@@ -43,12 +29,7 @@ export default {
 <style lang="scss">
 @import "./assets/scss/main.scss";
 .sidebar{
-  position: fixed;
   height: 100vh;
 }
-// .viewport{
-//   height: 100vh;
-//   overflow-y: auto ;
-// }
 
 </style>

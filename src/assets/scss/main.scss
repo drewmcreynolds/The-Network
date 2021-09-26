@@ -36,3 +36,8 @@ form:invalid button[type="submit"] {
   filter: grayscale(1);
   pointer-events: none;
 }
+
+.bggrad {
+  background: rgb(0,0,0);
+background: linear-gradient(90deg, rgba(0,0,0,1) 11%, rgba(152,50,210,1) 52%, rgba(0,255,103,1) 100%);
+}

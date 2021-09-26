@@ -1,33 +1,114 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col d-flex flex-wrap">
-        <div class="card">
+  <div class="container-fluid">
+    <div v-if="profile">
+      <div class="row justify-content-center">
+        <div class="card mt-3 p-0">
+          <div class="card-header cover-img" :style="{ backgroundImage: `url(${account.coverImg})`}">
+          </div>
+          <div class="card-body text-center">
+            <!-- <div class="row mt-2">
+              <div class="col-md-2 text-start">
+                <a :href="profile.resume" class="">
+                  <i class="mdi mdi-file-account mdi-24px text-black"></i>
+                </a>
+                <a :href="profile.resume" class="">
+                  <i class="mdi mdi-file-account mdi-24px text-black"></i>
+                </a> -->
+            <h3 class="text-black">
+              <small> Class:  {{ profile.class }}</small>
+            </h3>
+            <h3>
+              <b>
+                {{ profile.name }}
+              </b>
+            </h3>
+            <h6>
+              {{ profile.bio }}
+            </h6>
+          </div>
         </div>
       </div>
     </div>
+    <div v-else>
+      <h1 class="text-success">
+        LOADING...........
+      </h1>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+        <!-- <Profile /> -->
+        </div>
+      </div>
+      <div class="row" v-if="posts.length > 0">
+        <div class="col-md-6">
+          <h1>
+            <PostCard v-for="p in posts" :key="p.id" :post="p" />
+          </h1>
+        </div>
+      </div>
+      <div class="row" v-else>
+        <h3>Loading............</h3>
+      </div>
+      <div class="col-3">
+        <Ad v-for="a in ad" :key="a.id" :ad="a" />
+      </div>
+    </div>
   </div>
+
+  <Modal>
+    <template #modal-title>
+      <h4>Post Form</h4>
+    </template>
+    <template #modal-body>
+      <PostForm />
+    </template>
+  </Modal>
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core'
+import { computed, watchEffect } from '@vue/runtime-core'
+import { postsService } from '../services/PostsService.js'
+import Pop from '../utils/Pop.js'
 import { AppState } from '../AppState.js'
+import { useRoute } from 'vue-router'
+import { profilesService } from '../services/ProfilesService.js'
+import { adsService } from '../services/AdsService.js'
+import { accountService } from '../services/AccountService.js'
 
 export default {
-  props: {
-    profile: {
-      type: Object,
-      required: true
-    }
-  },
   setup() {
+    const route = useRoute()
+    async function getPosts() {
+      try {
+        await postsService.getPosts({ creatorId: route.params.id })
+        await adsService.getAds()
+      } catch (error) {
+        Pop.toast(error, 'error')
+      }
+    }
+    watchEffect(async() => {
+      if (route.params.id) {
+        await profilesService.getProfileById(route.params.id)
+        getPosts()
+      }
+    })
     return {
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      profile: computed(() => AppState.profile),
+      posts: computed(() => AppState.posts),
+      ad: computed(() => AppState.ads)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+
+.cover-img {
+  background-size: cover;
+  background-position: center center;
+  height: 35vh;
+}
 
 </style>

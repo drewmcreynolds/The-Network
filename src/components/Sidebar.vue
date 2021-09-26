@@ -1,5 +1,14 @@
 <template>
   <div class="row sidebar bg-black">
+    <div class="div"></div>
+    <div class="px-4">
+      <Searchbar />
+    </div>
+    <div>
+    </div>
+    <div>
+      <Auth />
+    </div>
   </div>
 </template>
 

@@ -5,9 +5,6 @@
         <h1>Home</h1>
       </div>
     </router-link>
-    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#post-form">
-      Create Post
-    </button>
     <button
       class="navbar-toggler"
       type="button"

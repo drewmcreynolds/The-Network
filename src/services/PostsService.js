@@ -11,9 +11,27 @@ class PostsService {
     AppState.posts = res.data.posts.map(p => new Post(p))
   }
 
-  async searchByPosts(query) {
+  async searchByPosts(query = {}) {
     const res = await api.get(`api/posts/?query=${query}`)
     logger.log('search by posts', res)
+    AppState.posts = res.data.posts.map(p => new Post(p))
+  }
+
+  async getNewerPosts() {
+    AppState.posts = []
+    AppState.pData = {}
+    AppState.currentPage++
+    const res = await api.get(`api/posts?page=${AppState.currentPage}`)
+    AppState.pData = res.data
+    AppState.posts = res.data.posts.map(p => new Post(p))
+  }
+
+  async getOlderPosts() {
+    AppState.posts = []
+    AppState.pData = {}
+    AppState.currentPage--
+    const res = await api.get(`api/posts?page=${AppState.currentPage}`)
+    AppState.pData = res.data
     AppState.posts = res.data.posts.map(p => new Post(p))
   }
 

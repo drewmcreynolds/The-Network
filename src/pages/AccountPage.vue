@@ -8,21 +8,37 @@
       </div>
       <div class="row">
         <form @submit.prevent="editAccount()">
-          <p>edit your name</p>
-          <input type="text" v-model="account.name" placeholder="Name">
-          <p>edit your class</p>
-          <input type="text" v-model="account.class" placeholder="Class">
-          <p>edit your picture</p>
-          <input type="text" v-model="account.picture" placeholder="Picture">
-          <p>edit your cover picture</p>
-          <input type="text" v-model="account.coverImg">
-          <p>edit your linkedin</p>
-          <input type="text" v-model="account.linkedin" placeholder="Linkedin">
-          <p>edit your github</p>
-          <input type="text" v-model="account.github" placeholder="Github">
-          <p>Did you graduated?</p>
-          <input type="checkbox" v-model="account.graduated" placeholder="Grad">
-          <p>About you</p>
+          <h4 class="text-danger">
+            edit your name
+          </h4>
+          <input type="text" v-model="account.name" placeholder="Name"><br />
+          <h4 class="text-danger">
+            edit your class
+          </h4>
+          <input type="text" v-model="account.class" placeholder="Class"><br />
+          <h4 class="text-danger">
+            edit your picture
+          </h4>
+          <input type="text" v-model="account.picture" placeholder="Picture"><br />
+          <h4 class="text-danger">
+            edit your cover picture
+          </h4>
+          <input type="text" v-model="account.coverImg"><br />
+          <h4 class="text-danger">
+            edit your linkedin
+          </h4>
+          <input type="text" v-model="account.linkedin" placeholder="Linkedin"><br />
+          <h4 class="text-danger">
+            edit your github
+          </h4>
+          <input type="text" v-model="account.github" placeholder="Github"><br />
+          <h6 class="text-danger">
+            Did you graduated?
+          </h6>
+          <input type="checkbox" v-model="account.graduated" placeholder="Grad"><br />
+          <h4 class="text-danger">
+            About you
+          </h4>
           <textarea v-model="account.bio"
                     name="body"
                     id="body"
@@ -44,18 +60,6 @@
       </div>
     </div>
   </div>
-  <!-- <div class="row">
-      <div class="col-md-9">
-        <div class="about text-center">
-          <h1>Welcome {{ account.name }}</h1>
-          <img class="rounded" :src="account.picture" alt="" />
-          <p>{{ account.email }}</p>
-        </div>
-        <div class="col-md-3">
-
-        </div>
-      </div>
-    </div> -->
 </template>
 
 <script>
@@ -92,7 +96,9 @@ export default {
 </script>
 
 <style scoped>
-img {
-  max-width: 100px;
+.cover-img {
+  background-size: cover;
+  background-position: center center;
+  height: 35vh;
 }
 </style>

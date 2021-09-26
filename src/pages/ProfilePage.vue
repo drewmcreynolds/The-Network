@@ -1,51 +1,54 @@
 <template>
-  <div class="container-fluid">
-    <div class="row" v-if="posts.length > 0">
-      <div class="col-md-6">
-        <h1>
-          <PostCard v-for="p in posts" :key="p.id" :post="p" />
-        </h1>
+  <header class="d-flex mb-4">
+    <div class="row">
+      <div class="col-md-4">
+        <button @click="getNewerPosts()" class="btn btn-success selectable">
+          Newer
+        </button>
+      </div>
+      <div class="col-md-4">
+        <button :disabled="currentPage === 1" @click="getOlderPosts()" class="btn btn-success selectable">
+          Older
+        </button>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#post-form">
+          Create Post
+        </button>
       </div>
     </div>
-    <div class="row" v-else>
-      <h3>Loading............</h3>
-    </div>
-    <div class="col-3">
-      <Ad v-for="a in ad" :key="a.id" :ad="a" />
-    </div>
+  </header>
+  <div class="container-fluid">
+    <Profile />
   </div>
 </template>
 
 <script>
-import { computed, watchEffect } from '@vue/runtime-core'
-import { postsService } from '../services/PostsService.js'
+import { computed } from '@vue/runtime-core'
 import Pop from '../utils/Pop.js'
 import { AppState } from '../AppState.js'
 import { useRoute } from 'vue-router'
 import { profilesService } from '../services/ProfilesService.js'
-import { adsService } from '../services/AdsService.js'
 
 export default {
   setup() {
     const route = useRoute()
-    async function getPosts() {
-      try {
-        await postsService.getPosts({ creatorId: route.params.id })
-        await adsService.getAds()
-      } catch (error) {
-        Pop.toast(error, 'error')
-      }
-    }
-    watchEffect(async() => {
-      if (route.params.id) {
-        await profilesService.getProfileById(route.params.id)
-        getPosts()
-      }
-    })
     return {
-      profile: computed(() => AppState.profile),
-      posts: computed(() => AppState.posts),
-      ad: computed(() => AppState.ads)
+      currentPage: computed(() => AppState.currentPage),
+      async getOlderPosts() {
+        try {
+          await profilesService.getOlderPosts(route.params.id)
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      },
+      async getNewerPosts() {
+        try {
+          await profilesService.getNewerPosts(route.params.id)
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      }
     }
   }
 }
