@@ -1,25 +1,32 @@
 <template>
   <div class="container-fluid">
-    <div class="card p-3 m-3">
-      <img :src="post.imgUrl" class="card-img-top image-fluid rounded-top" alt="..." style="height: 25vh; width:35vh">
-      <div class="card-body">
-        <h4 class="card-text">
-          {{ post.body }}
-        </h4>
-        <div class="footer text-end">
-          <router-link :to="{name: 'Profile', params: {id: post.creatorId}}" class="btn btn">
-            <img :src="post.creator.picture" style="height: 40px; width: 40px;">
+    <div class="card p-3 m-3 elevation-3" style="max-width: 624px;">
+      <router-link :to="{name: 'Profile', params: {id: post.creatorId}}" class="btn btn">
+        <img :src="post.imgUrl" class="card-img-top image-fluid rounded-top" alt="...">
+        <div class="card-body">
+          <h4 class="card-text">
+            {{ post.body }}
+          </h4>
+          <h6 class="card-text">
+            <small class="text-muted">
+              Posted: {{ new Date(post.updatedAt).toDateString() }}
+            </small>
+          </h6>
+          <div class="footer text-end">
+            <img :src="post.creator.picture" style="height: 40px; width: 40px;" class="align-items-end">
             <h6>
               {{ post.creator.name }}
             </h6>
-          </router-link>
-          <div style="right: 2rem; top: 2rem" v-if="account.id == post.creatorId">
-            <i class="mdi mdi-trash text-warning f-25 selectable" @click="deletePost()">
-              Delete
-            </i>
           </div>
         </div>
-      </div>
+        <div v-if="account.id == post.creatorId">
+          <i class="mdi mdi-trash-can mdi-24px text-warning f-30 selectable" @click="deletePost()">
+          </i>
+        </div>
+      </router-link>
+      <span>
+        <i class="mdi mdi-thumb-up selectable" @click="likePost()"> Likes {{ post.likes.length }}</i>
+      </span>
     </div>
   </div>
 </template>
@@ -29,18 +36,19 @@ import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState.js'
 import { postsService } from '../services/PostsService.js'
 import Pop from '../utils/Pop.js'
+import { Post } from '../models/Post.js'
 
 export default {
   props: {
     post: {
-      type: Object,
+      type: Post,
       required: true
     }
   },
   setup(props) {
     return {
       account: computed(() => AppState.account),
-      // posts: computed(() => AppState.posts)
+      profile: computed(() => AppState.profile),
       async deletePost() {
         try {
           const yes = await Pop.confirm('do you really want to delete this?')
@@ -56,7 +64,7 @@ export default {
           await postsService.likePost(props.post.id)
           Pop.toast('You liked it!', 'success')
         } catch (error) {
-          Pop.toas(error, 'error')
+          Pop.toast(error, 'error')
         }
       }
     }

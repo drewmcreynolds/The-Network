@@ -1,12 +1,10 @@
 <template>
   <header>
-    <div>
-      <Navbar />
-    </div>
+    <Navbar />
   </header>
-  <main>
-    <div class="row d-flex">
-      <div class="col-md-3">
+  <main class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
         <Sidebar />
       </div>
     </div>
@@ -14,14 +12,12 @@
       <div class="row">
         <div class="col-md-3">
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 viewport">
           <router-view />
         </div>
       </div>
     </div>
   </main>
-  <footer>
-  </footer>
   <Modal>
     <template #modal-title>
       <h4>Post Form</h4>
@@ -50,5 +46,9 @@ export default {
   position: fixed;
   height: 100vh;
 }
+// .viewport{
+//   height: 100vh;
+//   overflow-y: auto ;
+// }
 
 </style>

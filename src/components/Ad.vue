@@ -1,6 +1,6 @@
 <template>
-  <div class="col-md-3">
-    <img :src="ad.tall" class="elevation-4 rounded m-2">
+  <div class="col-md-3 p-4">
+    <img :src="ad.banner" class="elevation-4 rounded m-2">
   </div>
 </template>
 

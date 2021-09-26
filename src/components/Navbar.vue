@@ -1,9 +1,7 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-black bg-black fixed-top
-   px-3"
-  >
+  <nav class="navbar navbar-expand-lg navbar-black bg-black px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class=" row d-flex justify-content-center">
+      <div class="d-flex align-items-center flex-column">
         <h1>Home</h1>
       </div>
     </router-link>
