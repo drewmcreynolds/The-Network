@@ -13,7 +13,7 @@
       </div>
       <div class="col-md-4">
         <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#post-form">
-          Create Post
+          Create a Post
         </button>
       </div>
     </div>
