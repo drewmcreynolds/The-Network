@@ -1,19 +1,21 @@
 <template>
   <div class="container-fluid">
     <div v-if="profile">
-      <div class="row justify-content-center">
+      <div class="row d-flex justify-content-center">
         <div class="card mt-3 p-0">
           <div class="card-header cover-img" :style="{ backgroundImage: `url(${account.coverImg})`}">
+            <img :src="account.picture" alt="" class="rounded my-2" height="200">
           </div>
           <div class="card-body text-center">
-            <!-- <div class="row mt-2">
-              <div class="col-md-2 text-start">
-                <a :href="profile.resume" class="">
-                  <i class="mdi mdi-file-account mdi-24px text-black"></i>
-                </a>
-                <a :href="profile.resume" class="">
-                  <i class="mdi mdi-file-account mdi-24px text-black"></i>
-                </a> -->
+            <a :href="account.github" class="text-dark p-3 ms-3">
+              <i class="mdi mdi-github mdi-48px selectable text-dark">
+              </i>
+              Github</a>
+            <a :href="account.linkedin" class="p-3 ms-3">
+              <i class="mdi mdi-linkedin mdi-48px selectable">
+              </i>
+              Linkedin</a>
+
             <h3 class="text-black">
               <small> Class:  {{ profile.class }}</small>
             </h3>
@@ -36,7 +38,7 @@
     </div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-9">
         <!-- <Profile /> -->
         </div>
       </div>
@@ -109,6 +111,11 @@ export default {
   background-size: cover;
   background-position: center center;
   height: 35vh;
+}
+.acc-img {
+  height: 100px;
+  width: 100px;
+  background-size: cover;
 }
 
 </style>
