@@ -1,11 +1,13 @@
 <template>
   <div class="home d-flex flex-column align-items-center justify-content-center">
-    <div class="row container mt-5">
+    <div class="row mt-5">
       <div class="col ms-3 mt-5 p-3">
         <Ad v-for="a in ad" :key="a.id" :ad="a" />
       </div>
-      <div class="col ms-3 mt-5 p-2">
-        <PostCard v-for="p in posts" :key="p.id" :post="p" />
+      <div class="row mt-3">
+        <div class="col-10 ms-3 mt-5 p-2">
+          <PostCard v-for="p in posts" :key="p.id" :post="p" />
+        </div>
       </div>
     </div>
   </div>

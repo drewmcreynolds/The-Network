@@ -19,6 +19,9 @@
             <h3 class="text-black">
               <small> Class:  {{ profile.class }}</small>
             </h3>
+            <h3 class="text-black">
+              <small> Graduated:  {{ profile.graduated }}</small>
+            </h3>
             <h3>
               <b>
                 {{ profile.name }}
@@ -36,25 +39,20 @@
         LOADING...........
       </h1>
     </div>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-9">
-        <!-- <Profile /> -->
-        </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row" v-if="posts.length > 0">
+      <div class="col-md-9">
+        <h1>
+          <PostCard v-for="p in posts" :key="p.id" :post="p" />
+        </h1>
       </div>
-      <div class="row" v-if="posts.length > 0">
-        <div class="col-md-6">
-          <h1>
-            <PostCard v-for="p in posts" :key="p.id" :post="p" />
-          </h1>
-        </div>
-      </div>
-      <div class="row" v-else>
-        <h3>Loading............</h3>
-      </div>
-      <div class="col-3">
-        <Ad v-for="a in ad" :key="a.id" :ad="a" />
-      </div>
+    </div>
+    <div class="row" v-else>
+      <h3>Loading............</h3>
+    </div>
+    <div class="col-3">
+      <Ad v-for="a in ad" :key="a.id" :ad="a" />
     </div>
   </div>
 

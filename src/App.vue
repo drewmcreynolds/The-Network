@@ -7,7 +7,7 @@
       <div class="col-md-2">
         <Sidebar />
       </div>
-      <div class="col-md-8">
+      <div class="col-md-10">
         <router-view />
       </div>
     </div>
